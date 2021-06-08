@@ -2,8 +2,16 @@ const form = document.querySelector(".form");
 const input = document.querySelector(".input");
 const pending = document.querySelector(".pending");
 
+const LS_PENDING = "PENDING"
 
-function storeValue() {
+function storeValue(value) {
+    const newId = PendingArray.length + 1;
+    const dataShema = {
+        text: value,
+        id: newId
+    }
+
+    localStorage.setItem()
 
 }
 
@@ -28,9 +36,15 @@ function toDoApp(event) {
     const currentValue = input.value;
     toDoPending(currentValue);
     input.value = "";
+    storeValue(currentValue);
 }
 
 function defaultLoader() {
+    const loadedPending = localStorage.getItem(LS_PENDING);
+    if (loadedPending !== null) {
+      const parsedPending = JSON.parse(loadedPending);
+      console.log(parsedPending);
+    }
     form.addEventListener("submit", toDoApp);
 }
 
